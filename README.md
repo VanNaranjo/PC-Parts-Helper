@@ -23,8 +23,25 @@ Host: vanpcbuilder.azurewebsites.net
 
 [
   {
-    //TBD
-  }
+    id: 1,
+    name: "AMD Ryzen 7 7800X3D",
+    price: 339,
+    core_count: 8,
+    boost_clock: 5,
+    tdp: 120,
+    graphics: "Radeon",
+    smt: "TRUE"
+  },
+  {
+    id: 2,
+    name: "AMD Ryzen 5 7600X",
+    price: 204.99,
+    core_count: 6,
+    boost_clock: 5.3,
+    tdp: 105,
+    graphics: "Radeon",
+    smt: "TRUE"
+  },
 ]
 
 #### Response Codes:
