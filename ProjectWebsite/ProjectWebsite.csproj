@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\css\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ProjectViewModels\ProjectViewModels.csproj" />
   </ItemGroup>
 
