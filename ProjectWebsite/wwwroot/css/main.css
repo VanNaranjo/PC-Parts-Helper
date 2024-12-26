@@ -1,4 +1,8 @@
-﻿body {
+﻿header, section, nav, main, footer, aside {
+    display: block;
+}
+
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -24,32 +28,35 @@ header p {
     font-size: 1.2rem;
 }
 
-main {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content:center;
 }
 
-main p {
-    margin-bottom: 1rem;
-    font-size: 1rem;
+a {
+    text-decoration: none;
+    margin: 0 20px 0 20px;
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
+section {
+    padding: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
 }
 
-input[type="text"]:focus {
-    border-color: #0078D7;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+.section1, .section2 {
+    margin: 20px 200px 20px 200px;
 }
+
+.section1 {
+    background-color: #002b80;
+    color: white;
+}
+
+.section2 {
+    background-color: #66a3ff;
+    color: white;
+}
+
