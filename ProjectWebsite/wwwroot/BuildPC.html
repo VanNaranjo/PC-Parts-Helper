@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
     <title>PC Build Helper</title>
+    <link href="/lib/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -19,14 +21,18 @@
         </nav>
     </header>
 
-    <main>
+    <main class="d-flex flex-column align-items-center justify-content-center">
         <p>Please answer the questions to start your build</p>
-        <p>How much is your budget?</p>
-        <input type="text" id="answer1" name="answer1" placeholder="How much is your budget?">
+        <div class="q1">
+            <p>How much is your budget?</p>
+            <input type="text" id="answer1" name="answer1" placeholder="Budget">
+        </div>
 
-        <p>What are you going to be using it on?</p>
-        <input type="text" id="answer2" name="answer2" placeholder="What are you going to be using it on?">
-        <button id="submitButton">Submit</button>
+        <div class="q2">
+            <p>What are you going to be using it on?</p>
+            <input type="text" id="answer2" name="answer2" placeholder="Purpose">
+            <button id="submitButton">Submit</button>
+        </div>
     </main>
 
     <div class="justify-content-center align-items-center row mt-5 ml-1">

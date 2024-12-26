@@ -34,51 +34,55 @@
         $("#partList").empty(); // Clear the existing list
 
         // Create and append the header row
-        let div = $(`<div class="list-group-item text-black bg-primary row d-flex" id="status">Parts Info</div>
-        <div class="list-group-item row d-flex text-center text-primary" id="heading">
-            <div class="col-4 h4">CPU</div>
-            <div class="col-4 h4">CPU Fan</div>
-            <div class="col-4 h4">GPU</div>
-            <div class="col-4 h4">Motherboard</div>
-            <div class="col-4 h4">RAM</div>
-            <div class="col-4 h4">Power Supply</div>
+        let div = $(`
+        <div class="list-group-item text-black row d-flex" id="status" style="background-color: #0078D7;">Parts Info</div>
+        <div class="list-group-item row d-flex text-center text-dark" id="heading">
+            <div class="col h4">CPU</div>
+            <div class="col h4">CPU Fan</div>
+            <div class="col h4">GPU</div>
+            <div class="col h4">Motherboard</div>
+            <div class="col h4">RAM</div>
+            <div class="col h4">Power Supply</div>
         </div>
     `);
         div.appendTo($("#partList"));
 
-        // Categories mapping (use the actual keys from the data)
+        // Combine all parts under each category into one column
         const categories = [
             { key: 'cpu', label: 'CPU' },
-            { key: 'cpuFan', label: 'CPU Fan' },
+            { key: 'cooler', label: 'CPU Fan' },
             { key: 'gpu', label: 'GPU' },
             { key: 'motherboard', label: 'Motherboard' },
             { key: 'ram', label: 'RAM' },
-            { key: 'psu', label: 'Power Supply' }
+            { key: 'psu', label: 'Power Supply' },
         ];
 
-        // Iterate through each category and display its parts
-        categories.forEach(category => {
-            // Get the parts for this category (overBudget, underBudget)
-            let categoryParts = data[category.key];
-            let overBudgetParts = categoryParts ? categoryParts.overBudget : [];
-            let underBudgetParts = categoryParts ? categoryParts.underBudget : [];
+        // Create rows for each category
+        const maxParts = Math.max(
+            ...categories.map(category => {
+                const categoryParts = data[category.key];
+                return (categoryParts?.overBudget?.length || 0) + (categoryParts?.underBudget?.length || 0);
+            })
+        );
 
-            // Create a new row for this category
-            let categoryDiv = $('<div class="list-group-item row"></div>');
+        for (let i = 0; i < maxParts; i++) {
+            let row = $('<div class="list-group-item row d-flex text-secondary"></div>');
 
-            // For overBudget parts, show only names
-            let overBudgetNames = overBudgetParts.map(part => `<div class="col-4">${part.name}</div>`).join('');
+            categories.forEach(category => {
+                const categoryParts = data[category.key];
+                const allParts = [
+                    ...(categoryParts?.overBudget || []),
+                    ...(categoryParts?.underBudget || [])
+                ];
 
-            // For underBudget parts, show only names
-            let underBudgetNames = underBudgetParts.map(part => `<div class="col-4">${part.name}</div>`).join('');
+                const partName = allParts[i]?.name || ''; // Get part name or leave blank
+                row.append(`<div class="col text-center">${partName}</div>`);
+            });
 
-            // Append the overBudget and underBudget part names to the category div
-            categoryDiv.append(overBudgetNames + underBudgetNames);
-
-            // Append the category div to the part list
-            $("#partList").append(categoryDiv);
-        });
+            $("#partList").append(row);
+        }
     };
+
 
     // Initial function call could be removed if not required to run on page load
     // buildPartList(); 

@@ -60,3 +60,10 @@ section {
     color: white;
 }
 
+main{
+    justify-content:center;
+}
+
+.q1, .q2{
+    margin: 10px;
+}
